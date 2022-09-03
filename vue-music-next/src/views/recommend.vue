@@ -1,5 +1,5 @@
 <template>
-  <div class="recommend" v-loading:[loadingText]="loading">
+  <div class="recommend" v-loading="loading">
     <scroll class="recommend-content">
       <div>
         <div class="slider-wrapper">
@@ -40,6 +40,7 @@ import Slider from '@/components/base/slider/slider'
 import Scroll from '@/components/base/scroll/scroll'
 
 export default {
+
   name: 'recommend',
   components: {
     Slider,
@@ -48,19 +49,37 @@ export default {
   data() {
     return {
       sliders: [],
-      albums: [],
-      loadingText: '正在载入...'
+      albums: []
+    }
+  },
+  // setup() {
+  //   const loading = computed(() => {
+  //     return !this.sliders.length && !this.albums.length
+  //   },() => {
+  //
+  //   })
+  //   return loading
+  // },
+  // computed: {
+  //   loading() {
+  //     return !this.sliders.length && !this.albums.length
+  //   }
+  // },
+  computed: {
+    loading: {
+      get() {
+        return !this.sliders.length && !this.albums.length
+      },
+      set(val){
+        return !this.sliders.length && !this.albums.length
+      }
     }
   },
   async created() {
+    this.loading = true
     const result = await getRecommend()
     this.sliders = result.sliders
     this.albums = result.albums
-  },
-  computed: {
-    loading() {
-      return !this.sliders.length && !this.albums.length
-    }
   }
 }
 </script>

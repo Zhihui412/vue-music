@@ -6,19 +6,19 @@
 
 <script>
     import useScroll from './use-scroll'
-    import {ref} from 'vue'
+    import { ref } from 'vue'
 
 export default {
     name: 'scroll',
-    pros:{
-        click:{
+    pros: {
+        click: {
             type: Boolean,
             default: true
         }
     },
     setup(props) {
         const rootRef = ref(null)
-        useScroll(rootRef,props)
+        useScroll(rootRef, props)
         return {
             rootRef
         }

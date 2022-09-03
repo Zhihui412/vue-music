@@ -38,7 +38,7 @@ function append(el) {
 }
 
 function remove(el) {
-  removeClass(el,relativeCls)
+  removeClass(el, relativeCls)
   el.removeChild(el.instance.$el)
 }
 
